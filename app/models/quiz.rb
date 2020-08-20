@@ -19,8 +19,8 @@ class Quiz < ApplicationRecord
     end
 
 
-    def self.retrieve_quiz(category_id,difficulty)
-        response = HTTParty.get("https://opentdb.com/api.php?amount=10&category=#{category_id.to_s}&difficulty=#{difficulty}&type=multiple")        
+    def self.retrieve_quiz(category_id,difficulty, num_questions)
+        response = HTTParty.get("https://opentdb.com/api.php?amount=#{num_questions}&category=#{category_id.to_s}&difficulty=#{difficulty}&type=multiple")        
         questions_json = JSON.parse(response.body)["results"]
         return questions_json
     end
