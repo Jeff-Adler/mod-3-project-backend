@@ -10,7 +10,7 @@ class QuizzesController < ApplicationController
 
     def create #this will receive a Category and Difficulty
         quiz = Quiz.create(quiz_params) #creates quiz with category and difficulty assigned.
-        quiz.category_id = Quiz.get_category_id(quiz.category) #quiz now has category, difficulty, category_id
+        quiz.update(category_id: Quiz.get_category_id(quiz.category)) #quiz now has category, difficulty, category_id
 
         #retrieves quiz questions from Trivia API
         quiz_questions_json = Quiz.retrieve_quiz(quiz.category_id,quiz.difficulty)
@@ -19,11 +19,18 @@ class QuizzesController < ApplicationController
     end
 
     def save_score 
+        quiz = Quiz.find_by(id: params[:id])
+        quiz.update(quiz_score_params)
+        render :json => quiz
     end
 
     private
 
     def quiz_params
         params.require(:quiz).permit(:category,:difficulty)
+    end
+
+    def quiz_score_params
+        params.require(:quiz).permit(:nickname,:score)
     end
 end

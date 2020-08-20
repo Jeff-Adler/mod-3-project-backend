@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   get 'quizzes/categories', to: 'quizzes#generate_categories'
   post 'quizzes/new', to: 'quizzes#create' #create quiz object AND render quiz questions
-  post 'quizzes/:id/score', to: 'quizzes#save_score'
+  patch'quizzes/:id/score', to: 'quizzes#save_score'
 
   resources :quizzes
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
