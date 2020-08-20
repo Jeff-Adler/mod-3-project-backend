@@ -1,5 +1,4 @@
 require 'httparty'
-require 'pp'
 require 'json'
 
 class Quiz < ApplicationRecord
