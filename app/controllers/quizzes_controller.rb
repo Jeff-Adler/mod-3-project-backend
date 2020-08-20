@@ -4,6 +4,11 @@ require 'json'
 
 class QuizzesController < ApplicationController
 
+    def index
+        quizzes = Quiz.all
+        render json: quizzes
+    end
+
     def generate_categories
         render json: Quiz.get_categories
     end
@@ -27,7 +32,7 @@ class QuizzesController < ApplicationController
     private
 
     def quiz_params
-        params.require(:quiz).permit(:category,:difficulty,:num_questions)
+        params.require(:quiz).permit(:category,:difficulty,:num_questions,:nickname)
     end
 
     def quiz_score_params

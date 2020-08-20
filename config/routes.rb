@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   #Path 2: Retrieve quiz questions & create quiz
   #Path 3: Patch score
 
+  get 'quizzes/', to: 'quizzes#index'
   get 'quizzes/categories', to: 'quizzes#generate_categories'
   post 'quizzes/new', to: 'quizzes#create' #create quiz object AND render quiz questions
   patch'quizzes/:id/score', to: 'quizzes#save_score'
